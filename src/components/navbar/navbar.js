@@ -1,6 +1,16 @@
 import { Link } from "react-router-dom"
+import { useState } from "react"
 
-const NavBar = () => {
+const NavBar = ({ onSearch, cartItemCount }) => {
+
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSubmit = () => {
+        if(searchQuery.trim().length) {
+            onSearch(searchQuery.trim());
+        }
+        setSearchQuery('')
+    }
     return (
         <div className="wrapper">
             <header className="container">
@@ -12,15 +22,18 @@ const NavBar = () => {
                     <div className="formContainer">
                         <form className="search">
                             <div className="fomr-control">
-                                <input type="text" placeholder="Search products.." />
+                                <input value={searchQuery} onChange={e => setSearchQuery(e.target.value)} type="text" placeholder="Search products.." />
                             </div>
-                            <button type="button" className="search-btn">
+                            <button type="button" className="search-btn" onClick={handleSubmit}>
                                 Search Product
                             </button>
                         </form>
                     </div>
                     <Link to="/cart" className="link-headerCart">
                         <img className="cartImg" src="/cart.svg" alt="cart"/>
+                        {cartItemCount > 0 && (
+                            <div className="cartCounter">{cartItemCount <= 9 ? cartItemCount : "9+"}</div>
+                        )}
                     </Link>
                     </div>
                 </div>
