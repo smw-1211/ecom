@@ -15,7 +15,7 @@ const NavBar = () => {
                                 <input type="text" placeholder="Search products.." />
                             </div>
                             <button type="button" className="search-btn">
-                                Search Products
+                                Search Product
                             </button>
                         </form>
                     </div>
