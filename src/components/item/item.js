@@ -1,3 +1,4 @@
+import { Link } from "react"
 const Item = ({ data, addToCart }) => {
 
     const { id, image, title, price } = data;
