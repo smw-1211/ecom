@@ -17,13 +17,14 @@ const Products = () => {
         const fetchProducts = async () => {
             setLoading(true);
             //To fetch data
-            const products = searchQuery ? 
-            await FakeStoreApi.fetchProductBySearchQuery(searchQuery) : 
-            await FakeStoreApi.fetchAllProducts();
+            const products = searchQuery ? await FakeStoreApi.
+            fetchProductBySearchQuery(searchQuery) : await 
+            FakeStoreApi.fetchAllProducts();
             setProducts(products);
+            console.log(products)
             setLoading(false);
         }
-        // fetchProducts.catch(console.error)
+        fetchProducts().catch(console.error)
     }, [searchQuery])
 
     if(!loading && searchQuery && !products.length){
@@ -39,17 +40,18 @@ const Products = () => {
     }
     return (
         <>
-        <div>
-            All the products go here.
-            {/* <div className="grid">
-                {loading ? (
-                    <div className="loader" />
-                ) : (
-                    products.map((product) => (
-                        <Item key={product.id} data={product} addToCart={()=> addToCart(product)} />
-                    ))
-                )}
-            </div> */}
+        <div className="container">
+            <div className="products my-5">
+                <div className="grid">
+                    {loading ? (
+                        <div className="loader" />
+                    ) : (
+                        products.map((product) => (
+                            <Item key={product.id} data={product} addToCart={()=> {console.log('hello')}} />
+                        ))
+                    )}
+                </div>
+            </div>
         </div>
         </>
     )

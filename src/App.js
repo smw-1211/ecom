@@ -15,7 +15,6 @@ function App() {
   }
   return (
     <div className="App">
-      Hello World
       <>
         <NavBar onSearch={onSearch} cartItemCount={2}/>
         <Routes>
