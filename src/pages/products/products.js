@@ -21,7 +21,6 @@ const Products = () => {
             fetchProductBySearchQuery(searchQuery) : await 
             FakeStoreApi.fetchAllProducts();
             setProducts(products);
-            console.log(products)
             setLoading(false);
         }
         fetchProducts().catch(console.error)
