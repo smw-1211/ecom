@@ -18,7 +18,6 @@ const Product = () => {
             setLoading(true);
             const product = await FakeStoreApi.fetchProductById(productId);
             setProduct(product);
-            console.log("prodddddddddddddddddddddddd", product)
             setLoading(false);
         }
         fetchProduct().catch(console.error);
