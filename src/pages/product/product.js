@@ -5,11 +5,13 @@ import { Link, useParams } from "react-router-dom"
 //import single product card
 import { Item } from "../../components/item/item"
 import './product.css'
+import { useCart } from "../../context/cart"
 
 const Product = () => {
     const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState();
     const { productId } = useParams();
+    const { addToCart } = useCart();
 
     useEffect(()=> {
         const fetchProduct = async () => {
@@ -57,7 +59,7 @@ const Product = () => {
                             </div>
                             <div className="flex">
                                 <span className="price">${product.price}</span>
-                                <span className="cart" onClick={() => {}}>
+                                <span className="cart" onClick={()=>addToCart(product)}>
                                     <img src="/cart.svg" alt="" />
                                 </span>
                             </div>

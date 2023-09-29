@@ -3,11 +3,13 @@ import { FakeStoreApi } from "../../services/fake-store-api"
 import { useSearchParams } from "react-router-dom"
 //import single product card
 import { Item } from "../../components/item/item"
+import { useCart } from "../../context/cart"
 
 const Products = () => {
     const [products, setProducts ] = useState([]);
     const [loading, setLoading ] = useState(true);
     const [ query, setQuery ] = useSearchParams()
+    const { addToCart } = useCart();
 
     //to get the content from the url after q.
     const searchQuery = query.get('q');
@@ -46,7 +48,7 @@ const Products = () => {
                         <div className="loader" />
                     ) : (
                         products.map((product) => (
-                            <Item key={product.id} data={product} addToCart={()=> {console.log('hello')}} />
+                            <Item key={product.id} data={product} addToCart={()=> addToCart(product)} />
                         ))
                     )}
                 </div>
